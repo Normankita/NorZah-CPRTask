@@ -105,6 +105,40 @@ header .logo .brand .tag{
   text-transform: uppercase;
 }
 
+header .headerRight{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+header .headerActions{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconbtn{
+  height: 34px;
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s var(--ease);
+}
+
+.iconbtn:hover{
+  background: var(--accent-gradient);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
 header .themeSelector{
   display: flex;
   align-items: center;

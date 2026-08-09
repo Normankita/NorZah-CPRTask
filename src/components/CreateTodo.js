@@ -18,7 +18,7 @@ const CreateTodo = ({todo, setTodo, todoDate, setTodoDate,disp, setDisp, date, s
             const tim = new Date();
 
             const newTodo=todo.map((task)=>(
-                task.id===holder.id? {id:holder.id, name:e.target.taskname.value, date:`${tim.toLocaleTimeString()} - ${tim.toLocaleDateString()}`, edited:true, todate:date} : task
+                task.id===holder.id? {id:holder.id, name:e.target.taskname.value, date:`${tim.toLocaleTimeString()} - ${tim.toLocaleDateString()}`, edited:true, todate:date, completed:holder.completed} : task
             ))
             setTodo(newTodo);
             setBack("");
@@ -40,7 +40,7 @@ const CreateTodo = ({todo, setTodo, todoDate, setTodoDate,disp, setDisp, date, s
                     id: tim.getTime(),
                     todate: date,
                     name: e.target.taskname.value,
-                    date: `${tim.toLocaleTimeString()} - ${tim.toLocaleDateString()}`, edited: false
+                    date: `${tim.toLocaleTimeString()} - ${tim.toLocaleDateString()}`, edited: false, completed: false
                 }
 
                 if(todo.length > 0) {
@@ -71,7 +71,7 @@ const CreateTodo = ({todo, setTodo, todoDate, setTodoDate,disp, setDisp, date, s
                 id: tim.getTime(),
                 todate: date,
                 name: e.target.taskname.value,
-                date: `${tim.toLocaleTimeString()} - ${tim.toLocaleDateString()}`, edited: false}
+                date: `${tim.toLocaleTimeString()} - ${tim.toLocaleDateString()}`, edited: false, completed: false}
  
             if(todo.length > 0) {
                 setTodo([...todo, newTask])

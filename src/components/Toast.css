@@ -1,0 +1,107 @@
+.toast{
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  color: var(--text);
+  z-index: 200;
+  overflow: hidden;
+  max-width: calc(100vw - 32px);
+  animation: toast-in .3s var(--ease);
+}
+
+@keyframes toast-in{
+  from{ opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to{ opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.toast > i.bi-check-circle-fill{
+  color: var(--success);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.toast-msg{
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.toast-undo{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-gradient);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform .2s var(--ease), filter .2s var(--ease);
+}
+.toast-undo:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.toast-close{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: var(--text-faint);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all .2s var(--ease);
+}
+.toast-close:hover{
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.toast-bar{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  animation: toast-shrink 5s linear forwards;
+}
+
+@keyframes toast-shrink{
+  from{ width: 100%; }
+  to{ width: 0%; }
+}
+
+@media only screen and (max-width: 560px){
+  .toast{
+    left: 16px;
+    right: 16px;
+    transform: none;
+    max-width: none;
+  }
+  .toast-msg{
+    white-space: normal;
+    flex-grow: 1;
+  }
+  @keyframes toast-in{
+    from{ opacity: 0; transform: translateY(10px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+}
