@@ -50,18 +50,18 @@ const ShowTodo = ({todo, setTodo, todoDate, setTodoDate, disp, setDisp, date, se
     <div className='container'>
       {/* <Listing todo={todo} /> */}
         <div className={`showdates ${intel? "show": "hide"} ${done? "done":"hello"}`}>
-        <br /><h1> <span className="count">{todoDate.length}</span> {todoDate.length===0? "tasks here": todoDate.length===1? "only here" : "dates"}</h1><br />
+        <br /><h1> <i className="bi bi-calendar3"></i> <span className="count">{todoDate.length}</span> {todoDate.length===0? "tasks here": todoDate.length===1? "only here" : "dates"}</h1><br />
         <ol>
             {(todoDate.length !== 0) && todoDate.map((datel)=>(
                 <li key={datel.date}>
                     <span>{datel.date}</span>
                     <span  className='view'>
-                       <span className="deli" onClick={()=> handleDelete(datel.date)} >del</span>
-                       <span className="edi" onClick={()=> viewDay(datel.date)} >vi</span>
-                    </span> 
+                       <span className="deli" title="Delete" aria-label="Delete" onClick={()=> handleDelete(datel.date)} ><i className="bi bi-trash3"></i></span>
+                       <span className="edi" title="View" aria-label="View" onClick={()=> viewDay(datel.date)} ><i className="bi bi-eye"></i></span>
+                    </span>
                 </li>
             ))}
-        </ol> 
+        </ol>
           </div>  
       <br />
       <DateDetails

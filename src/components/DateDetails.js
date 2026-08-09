@@ -44,18 +44,18 @@ const DateDetails = ({disp, intel, setIntel, done, setDone, todo, cur, setCur, s
         {
         
         (disp.length!==0) &&<>
-        <span onClick={trans}><h1 className="title"> <u> {cur} </u></h1></span>
+        <span onClick={trans}><h1 className="title"> <i className="bi bi-arrow-left-short"></i> <u> {cur} </u></h1></span>
         <ul >
         {disp.map((task)=>(
             <li key={task.id}>
               <p className="name"> {task.name} </p><br />
               <p className="date"> {task.edited? "edited at: ": "created at: "} {task.date} </p>
               <div className="action">
-                <span className="del" onClick={()=>handleDel(task.id)}>del</span>
-                <span className="ed" onClick={()=>handleEdit(task.id)}>ed</span>
+                <span className="del" title="Delete" aria-label="Delete" onClick={()=>handleDel(task.id)}><i className="bi bi-trash3"></i></span>
+                <span className="ed" title="Edit" aria-label="Edit" onClick={()=>handleEdit(task.id)}><i className="bi bi-pencil-square"></i></span>
               </div>
             </li>
-          
+
         ))}
         </ul>
         </>

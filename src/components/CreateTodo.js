@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import DatePicker from './DatePicker'
 
 const CreateTodo = ({todo, setTodo, todoDate, setTodoDate,disp, setDisp, date, setDate, holder, setHolder}) => {
-    
+
     const [back, setBack] = useState("");
-    
+    const [pendingDate, setPendingDate] = useState("");
+
    const handleDate = (e)=>{
     e.preventDefault();
-    setDate(e.target.date.value);
+    setDate(pendingDate);
     setBack("");
    }
 
@@ -21,6 +23,7 @@ const CreateTodo = ({todo, setTodo, todoDate, setTodoDate,disp, setDisp, date, s
             setTodo(newTodo);
             setBack("");
             setDate("");
+            setPendingDate("");
             e.target.value = "";
             setHolder({} || "")
         }else{
@@ -50,6 +53,7 @@ const CreateTodo = ({todo, setTodo, todoDate, setTodoDate,disp, setDisp, date, s
             setHolder({} || "")
             setBack("");
             setDate("");
+            setPendingDate("");
             e.target.value = "";
 
 
@@ -79,9 +83,10 @@ const CreateTodo = ({todo, setTodo, todoDate, setTodoDate,disp, setDisp, date, s
             setHolder({} || "")
             setBack("");
             setDate("");
+            setPendingDate("");
             e.target.value = "";
         }
-    
+
         }
     }
 
@@ -89,14 +94,14 @@ const CreateTodo = ({todo, setTodo, todoDate, setTodoDate,disp, setDisp, date, s
     <div className="createTodo">
         {!date &&
              <form onSubmit={handleDate} className='dateform'>
-                <input type="date" name="date" className={back}/>
-                <button type='submit'>Save</button>
+                <DatePicker value={pendingDate} onChange={setPendingDate} />
+                <button type='submit' className="submit-btn" disabled={!pendingDate}><i className="bi bi-calendar-check"></i> Save</button>
             </form>
         }
-        {date && 
+        {date &&
             <form onSubmit={handleSubmit} className='taskform'>
-                <input type="text" name= "taskname" id="name" autoFocus  onChange={()=>setBack("clicking")}value={holder.name} className={back} autoComplete='off'  onChange={e=>setHolder({...holder, name:e.target.value})} />
-                <button type= 'submit' className='button'> {holder.id? "Update": "Create"} </button>
+                <input type="text" name= "taskname" id="name" autoFocus placeholder="What needs to get done?" value={holder.name} className={back} autoComplete='off' onChange={e=>{setBack("clicking"); setHolder({...holder, name:e.target.value})}} />
+                <button type= 'submit' className='button submit-btn'> <i className={holder.id? "bi bi-check2-circle" : "bi bi-plus-circle"}></i> {holder.id? "Update": "Create"} </button>
             </form>
         }
     </div>
